@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { WagmiProvider, createConfig, http } from "wagmi";
 import { bsc } from "wagmi/chains";
-import { injected } from "wagmi/connectors/injected";
+import { injected } from "wagmi/connectors";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 /**
