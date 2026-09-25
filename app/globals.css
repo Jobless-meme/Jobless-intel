@@ -1,0 +1,178 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------------------------------
+   Jobless Intel — theme tokens
+   Three background settings, one shared orange accent.
+--------------------------------------------------------- */
+
+:root {
+  --bg: #05070d;
+  --bg-elevated: rgba(255, 255, 255, 0.035);
+  --bg-elevated-strong: rgba(255, 255, 255, 0.07);
+  --text: #f2f4f8;
+  --text-dim: rgba(242, 244, 248, 0.56);
+  --border: rgba(255, 255, 255, 0.09);
+  --accent: #ff6b00;
+  --accent-bright: #ff8800;
+  --glow-cyan: #22d3ee;
+  --glow-purple: #7c3aed;
+  --danger: #ff4d6d;
+  --success: #33e39a;
+}
+
+[data-theme="black"] {
+  --bg: #000000;
+  --bg-elevated: rgba(255, 255, 255, 0.045);
+  --bg-elevated-strong: rgba(255, 255, 255, 0.08);
+  --border: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="light"] {
+  --bg: #ffffff;
+  --bg-elevated: #f6f5f2;
+  --bg-elevated-strong: #eeece6;
+  --text: #0b0e14;
+  --text-dim: rgba(11, 14, 20, 0.58);
+  --border: rgba(11, 14, 20, 0.09);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  overscroll-behavior: none;
+}
+
+body {
+  min-height: 100dvh;
+  font-family: var(--font-display), sans-serif;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* thin, quiet scrollbars for the terminal panels */
+.thin-scroll::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.thin-scroll::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 999px;
+}
+.thin-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+/* text shimmer used once, on the loader wordmark */
+.shimmer-text {
+  background: linear-gradient(
+    100deg,
+    var(--text-dim) 30%,
+    #ffffff 45%,
+    var(--accent-bright) 50%,
+    #ffffff 55%,
+    var(--text-dim) 70%
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* bioluminescent ambient glow blobs, cosmic theme only */
+.flora-blob {
+  position: absolute;
+  border-radius: 999px;
+  pointer-events: none;
+  filter: blur(60px);
+  mix-blend-mode: screen;
+}
+
+.glass-panel {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.hairline-glow {
+  border: 1px solid rgba(255, 136, 0, 0.4);
+  box-shadow:
+    0 0 0 1px rgba(255, 107, 0, 0.08) inset,
+    0 0 18px rgba(34, 211, 238, 0.16),
+    0 0 24px rgba(124, 58, 237, 0.14);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ---------------------------------------------------------
+   Execution Bay — hub-refactor additions
+--------------------------------------------------------- */
+
+.lx-btn {
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  color: var(--text);
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  border-radius: 10px;
+  padding: 10px 12px;
+  transition: background-color 150ms ease, border-color 150ms ease, transform 100ms ease;
+}
+
+.lx-btn:hover:not(:disabled) {
+  background: var(--bg-elevated-strong);
+  border-color: var(--accent);
+}
+
+.lx-btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.lx-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.lx-mod {
+  cursor: pointer;
+}
+
+.lx-mod:active {
+  transform: scale(0.97);
+}
+
+#terminalAiLog {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) transparent;
+}
+
+#terminalAiLog::-webkit-scrollbar {
+  width: 6px;
+}
+
+#terminalAiLog::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 4px;
+}
