@@ -302,7 +302,7 @@ async function priorityGasBooster(p: any) {
     } catch {
       /* fall back to static base below */
     }
-    const mult = { standard: 1, fast: 1.5, turbo: 2.2 }[tier] ?? 1;
+    const mult = ({ standard: 1, fast: 1.5, turbo: 2.2 } as Record<string, number>)[tier] ?? 1;
     return { ok: true, chain, mode: tier, gwei: +(baseGwei * mult).toFixed(2) };
   }
 
