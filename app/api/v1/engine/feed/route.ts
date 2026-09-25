@@ -279,7 +279,7 @@ async function priorityGasBooster(p: any) {
     } catch {
       /* fall back to static base below */
     }
-    const mult = { standard: 1, fast: 2.5, turbo: 6 }[tier] ?? 1;
+    const mult = ({ standard: 1, fast: 2.5, turbo: 6 } as Record<string, number>)[tier] ?? 1;
     return {
       ok: true,
       chain,
