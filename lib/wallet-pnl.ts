@@ -57,7 +57,9 @@ async function extractTrades(
     }
     if (!tx?.meta) continue;
 
-    const { preTokenBalances = [], postTokenBalances = [], preBalances, postBalances } = tx.meta;
+const preTokenBalances = tx.meta.preTokenBalances ?? [];
+const postTokenBalances = tx.meta.postTokenBalances ?? [];
+const { preBalances, postBalances } = tx.meta;
     const accountKeys = tx.transaction.message.accountKeys;
     const ownerIndex = accountKeys.findIndex((k) => k.pubkey.toBase58() === owner);
     const solDeltaLamports = ownerIndex >= 0 ? (postBalances[ownerIndex] ?? 0) - (preBalances[ownerIndex] ?? 0) : 0;
